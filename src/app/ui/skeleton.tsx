@@ -4,7 +4,7 @@ const shimmer =
 export function QrcodeImgSkeleton() {
     return (
         <div
-            className={`${shimmer} h-[200px] w-[200px] rounded-xl bg-gray-200 p-2 shadow-sm m-10`}
+            className={`${shimmer} h-[200px] w-[200px] rounded-xl bg-gray-200 p-1 shadow-sm m-10`}
         >
             <div className="flex items-center justify-center h-full">
                 <div className="h-10 w-10 rounded-md bg-gray-100" />

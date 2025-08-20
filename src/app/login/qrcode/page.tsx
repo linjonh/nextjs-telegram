@@ -11,7 +11,7 @@ export default async function QRcodeLoginPanel() {
     }
     return (
         <div className="h-full flex items-center justify-center">
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm shadow-lg px-50 py-20 text-white ">
                 <h2 className="text-bold text-xl text-cyan-200">通过二维码登录</h2>
                 <Suspense fallback={<QrcodeImgSkeleton />}>
                     <QrcodeImage />
