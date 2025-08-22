@@ -28,7 +28,16 @@ export async function setAuthState(newState: { isLogin: boolean }) {
 }
 
 export async function getQrCodeParam() {
-    return global.qrCodeParam;
+    return new Promise<{ token: string; expires: number } | undefined>((resolve) => {
+        while (global.qrCodeParam?.expires === 0) {
+            if (global.qrCodeParam?.expires !== 0) {
+                resolve(global.qrCodeParam)
+                return
+            }
+        }
+        resolve(global.qrCodeParam)
+    })
+
 }
 
 

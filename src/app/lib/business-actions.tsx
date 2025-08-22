@@ -5,7 +5,7 @@ import { TelegramClient } from "telegram";
 import { UserAuthParams } from "telegram/client/auth";
 import { getAuthController, getAuthState, getQrCodeParam, getStoreSession, getStringSession, setAuthController, setAuthState, setQrCodeParam, setStringSession } from "./gloableData";
 
-function delay(ms: number) {
+export async function delay(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 const userAuthParams: UserAuthParams = {

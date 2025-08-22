@@ -1,4 +1,4 @@
-import { checkLogin } from "@/app/lib/business";
+import { checkLogin } from "@/app/lib/business-actions";
 import Link from "next/link";
 
 import { redirect } from "next/navigation";
