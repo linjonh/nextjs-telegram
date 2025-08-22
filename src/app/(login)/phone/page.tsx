@@ -1,4 +1,4 @@
-import { checkLogin } from "@/app/lib/data";
+import { checkLogin } from "@/app/lib/business";
 import Link from "next/link";
 
 import { redirect } from "next/navigation";
@@ -54,7 +54,7 @@ export default async function PhoneNumberLoginPanel() {
                     </p>
                 </div>
                 <div className="flex justify-center mt-20 ">
-                    <Link href={"/login/qrcode"}>
+                    <Link href={"/qrcode"}>
                         <div className="text-lg text-white bg-blue-500 rounded-full p-4 px-16 hover:bg-blue-400">
                             扫描二维码登录
                         </div>

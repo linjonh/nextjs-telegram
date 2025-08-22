@@ -1,14 +1,15 @@
-import { checkLogin } from "@/app/lib/data";
+'use client'
+import { checkLogin, initTelegram } from "@/app/lib/business";
+import { getAuthController, getQrCodeParam, setAuthState } from "@/app/lib/gloableData";
+
 import QrcodeImage from "@/app/ui/qrcode";
 import { QrcodeImgSkeleton } from "@/app/ui/skeleton";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 
-export default async function QRcodeLoginPanel() {
-    if (await checkLogin()) {
-        redirect("/home")
-    }
+export default function QRcodeLoginPanel() {
+  
     return (
         <div className="h-full flex items-center justify-center">
             <div className="flex flex-col items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm shadow-lg px-50 py-20 text-white ">
@@ -26,7 +27,7 @@ export default async function QRcodeLoginPanel() {
                     </li>
                 </ol>
                 <div className="flex justify-center mt-4">
-                    <Link href={"/login/phone"}>
+                    <Link href={"/phone"}>
                         <div className="text-lg text-white bg-blue-500 rounded-full p-4 px-16 hover:bg-blue-400">
                             使用手机号码登录
                         </div>

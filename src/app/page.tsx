@@ -1,12 +1,11 @@
-
 import { redirect } from 'next/navigation';
-import { checkLogin } from './lib/data';
-
+import { checkLogin, initTelegram } from './lib/business';
 export default async function Home() {
+
   if (await checkLogin()) {
-    redirect("/home")
+    redirect("/home");
   } else {
-    redirect('/login/qrcode');
+    redirect('/qrcode');
   }
-  return null;
+  return "初始化中...";
 }
