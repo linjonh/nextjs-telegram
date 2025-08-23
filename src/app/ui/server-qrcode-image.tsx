@@ -1,4 +1,3 @@
-"use server"
 import QRCode from "qrcode"
 import { getAuthController, getQrCodeParam, setQrCodeParam } from "../lib/gloableData";
 import Image from "next/image";

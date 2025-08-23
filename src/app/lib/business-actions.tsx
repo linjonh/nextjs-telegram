@@ -89,7 +89,7 @@ export async function initTelegram() {
     throw new Error("Invalid TELEGRAM_API_ID: must be a number");
   }
 
-  const storeSession = await getStoreSession()
+  // const storeSession = await getStoreSession()
   console.log("====>start: stringSession.authKey:", global.stringSession.authKey, "storeSession: ", global.stringSession)
   if (!global.client) {
     global.client = new TelegramClient(global.stringSession, apiId, apiHashEnv, {});

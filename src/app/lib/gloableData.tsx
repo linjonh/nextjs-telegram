@@ -1,18 +1,17 @@
-"use server"
+"use server";
 import { StoreSession, StringSession } from "telegram/sessions";
 
 // 确保全局对象初始化
 declare global {
-    var qrCodeParam: { token: string; expires: number } | undefined;
-    var stringSession: StringSession;
-
+  var qrCodeParam: { token: string; expires: number } | undefined;
+  var stringSession: StringSession;
 }
 
 if (!global.qrCodeParam) {
-    global.qrCodeParam = { token: "未初始化", expires: 0 };
+  global.qrCodeParam = { token: "未初始化", expires: 0 };
 }
 if (!global.stringSession) {
-    global.stringSession = new StringSession("");
+  global.stringSession = new StringSession("");
 }
 // 内部变量
 let authState = { isLogin: false };
@@ -21,48 +20,52 @@ let authController: { resolve?: Function; reject?: Function } = {};
 
 // 只导出异步函数
 export async function getAuthState() {
-    return authState;
+  return authState;
 }
 export async function setAuthState(newState: { isLogin: boolean }) {
-    authState = newState;
+  authState = newState;
 }
 
 export async function getQrCodeParam() {
-    return new Promise<{ token: string; expires: number } | undefined>((resolve) => {
-        while (global.qrCodeParam?.expires === 0) {
-            if (global.qrCodeParam?.expires !== 0) {
-                resolve(global.qrCodeParam)
-                return
-            }
-        }
-        resolve(global.qrCodeParam)
-    })
-
+  return new Promise<{ token: string; expires: number } | undefined>(
+    (resolve) => {
+      if (global.qrCodeParam?.expires !== 0) {
+        resolve(global.qrCodeParam);
+        return;
+      }
+      resolve({ token: "", expires: 0 });
+    }
+  );
 }
 
-
-export async function setQrCodeParam(newParam: { token: string; expires: number }) {
-    global.qrCodeParam = newParam;
-    console.log("setQrCodeParam=", global.qrCodeParam)
+export async function setQrCodeParam(newParam: {
+  token: string;
+  expires: number;
+}) {
+  global.qrCodeParam = newParam;
+  console.log("setQrCodeParam=", global.qrCodeParam);
 }
 
 export async function getStringSession() {
-    return global.stringSession;
+  return global.stringSession;
 }
 export async function setStringSession(newSession: StringSession) {
-    global.stringSession = newSession;
+  global.stringSession = newSession;
 }
 
 export async function getStoreSession() {
-    return storeSession;
+  return storeSession;
 }
 export async function setStoreSession(newSession: StoreSession) {
-    storeSession = newSession;
+  storeSession = newSession;
 }
 
 export async function getAuthController() {
-    return authController;
+  return authController;
 }
-export async function setAuthController(newController: { resolve?: Function; reject?: Function }) {
-    authController = newController;
+export async function setAuthController(newController: {
+  resolve?: Function;
+  reject?: Function;
+}) {
+  authController = newController;
 }
